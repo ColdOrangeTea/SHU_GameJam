@@ -29,25 +29,49 @@ public class UpKnockControl : MonoBehaviour
 
     void ChangeAnimSkin()
     {
-        if (GameControl.KnockCounts >= 15)
+        if (GameControl.KnockCounts >= 45)
+        {
+            anim.SetBool("hitted3Idle", true);
+            anim.SetBool("hittedIdle", false);
+            anim.SetBool("hitted2Idle", false);
+        }
+        else if (GameControl.KnockCounts >= 30)
+        {
+            anim.SetBool("hitted2Idle", true);
+            anim.SetBool("hittedIdle", false);
+            anim.SetBool("hitted3Idle", false);
+        }
+        else if (GameControl.KnockCounts >= 15)
         {
             anim.SetBool("hittedIdle", true);
+            anim.SetBool("hitted2Idle", false);
+            anim.SetBool("hitted3Idle", false);
         }
         else if (GameControl.KnockCounts < 15)
         {
             anim.SetBool("hittedIdle", false);
+            anim.SetBool("hitted2Idle", false);
+            anim.SetBool("hitted3Idle", false);
         }
     }
     void ChangeKnockAnim()
     {
-        if (GameControl.KnockCounts >= 15)
+        if (GameControl.KnockCounts >= 45)
+        {
+            anim.SetTrigger("hitted3Knock");
+        }  
+        else if (GameControl.KnockCounts >=30 )
+        {
+            anim.SetTrigger("hitted2Knock");
+        }
+        else if (GameControl.KnockCounts >= 15)
         {
            anim.SetTrigger("hittedKnock");
         }
         else if (GameControl.KnockCounts < 15)
         {
            anim.SetTrigger("knock");
-        }
+        } 
     }
 
     void OnKnockNail()

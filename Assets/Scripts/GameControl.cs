@@ -26,10 +26,12 @@ public class GameControl : MonoBehaviour
     public GameObject QuitButton;
     [Header("ºVÀ»¦¸¼Æ")]
     public static int KnockCounts = 0;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         Banana.SetActive(false);
         StartButton.SetActive(true);
         EndButton.SetActive(false);
@@ -59,6 +61,7 @@ public class GameControl : MonoBehaviour
     
     public void GameQuit()
     {
+        audioSource.Play();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -68,6 +71,7 @@ public class GameControl : MonoBehaviour
     }
     public void GameStart()
     {
+        audioSource.Play();
         KnockCounts = 0;
         Timer = 0;
         SpawnInterval = 1f;
@@ -84,6 +88,7 @@ public class GameControl : MonoBehaviour
     }
     public void GameOver()
     {
+        audioSource.Play();
         StartButton.SetActive(true);
         StartText.SetActive(true);
         EndButton.SetActive(false);
